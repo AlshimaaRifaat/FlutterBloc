@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 
 class CustomCategoryImage extends StatelessWidget {
-   const CustomCategoryImage({super.key});
+   const CustomCategoryImage({super.key,required this.imageUrl});
+   final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class CustomCategoryImage extends StatelessWidget {
         aspectRatio: 2.6 / 4,
         child: CachedNetworkImage(
           fit: BoxFit.fill,
-          imageUrl: 'https://student.valuxapps.com/storage/uploads/categories/16445270619najK.6242655.jpg',
+          imageUrl: imageUrl,
           errorWidget: (context, url, error) => const Icon(
             Icons.error,
           ),
