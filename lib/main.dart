@@ -4,6 +4,7 @@ import 'package:flutter_bloc_sample/core/utils/service_locator.dart';
 import 'package:flutter_bloc_sample/features/home/data/repos/home_repo_impl.dart';
 import 'package:flutter_bloc_sample/features/home/presentation/cubits/categories_cubit/categories_cubit.dart';
 import 'package:flutter_bloc_sample/features/home/presentation/views/home_screen.dart';
+import 'package:flutter_bloc_sample/features/login/login_screen.dart';
 
 void main() {
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       )..fetchCategoriesList(),
       child: MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           // This is the theme of your application.
           //
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home:  HomeScreen(),
+        home:  LoginScreen(),
       ),
     );
   }
