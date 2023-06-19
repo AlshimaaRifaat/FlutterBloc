@@ -6,12 +6,14 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   bool isObscure;
-  AppTextField({Key? key,
 
+
+  AppTextField({Key? key,
     required this.textController,
     required this.hintText,
     required this.icon,
-    this.isObscure=false}) : super(key: key);
+    this.isObscure=false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class AppTextField extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
       ),
-      child: TextField(
+      child: TextFormField(
         obscureText: isObscure? true : false,
         controller: textController,
         decoration: InputDecoration(
@@ -48,6 +50,7 @@ class AppTextField extends StatelessWidget {
 
             )
         ),
+
       ),
     );
   }

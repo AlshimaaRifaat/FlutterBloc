@@ -10,4 +10,14 @@ class ApiService {
     var response = await _dio.get('${AppConstants.baseUrl}$endPoint');
     return response.data;
   }
+
+  Future<Map<String, dynamic>> login({required String endPoint,required String  email,required String password}) async {
+    var response = await _dio.post('${AppConstants.baseUrl}$endPoint',
+   data: {
+      'email': email,
+      'password': password,
+      },
+    );
+    return response.data;
+  }
 }

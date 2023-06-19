@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc_sample/app_constants.dart';
 import 'package:flutter_bloc_sample/core/api/api_service.dart';
 import 'package:flutter_bloc_sample/core/errors/failures.dart';
-import 'package:flutter_bloc_sample/features/home/data/repos/home_repo.dart';
+import 'package:flutter_bloc_sample/features/home/data/repos/home/home_repo.dart';
 import 'package:flutter_bloc_sample/features/home/models/categories_model.dart';
 
 class HomeRepoImpl implements HomeRepo {

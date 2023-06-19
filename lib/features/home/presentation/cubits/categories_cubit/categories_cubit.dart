@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_sample/features/home/data/repos/home_repo.dart';
+import 'package:flutter_bloc_sample/features/home/data/repos/home/home_repo.dart';
+
 import 'package:flutter_bloc_sample/features/home/models/categories_model.dart';
 
 part 'categories_state.dart';

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_sample/core/utils/service_locator.dart';
+import 'package:flutter_bloc_sample/features/home/data/repos/home/home_repo_impl.dart';
 import 'package:flutter_bloc_sample/features/home/presentation/cubits/categories_cubit/categories_cubit.dart';
 import 'package:flutter_bloc_sample/features/home/presentation/views/widgets/CategoryListViewItem.dart';
 import 'package:flutter_bloc_sample/features/home/presentation/views/widgets/custom_error_widget.dart';
