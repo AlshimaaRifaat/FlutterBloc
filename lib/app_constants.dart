@@ -6,4 +6,6 @@ class AppConstants {
   static const String type_your_password = 'Type your password';
   static const signIn='login';
   static const checkDataEntered='Check Data Entered';
+  static const emailError='please enter your email address';
+  static const passwordError='please enter your Password';
 }

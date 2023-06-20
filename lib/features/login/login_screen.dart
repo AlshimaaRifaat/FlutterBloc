@@ -15,93 +15,110 @@ import 'package:flutter_bloc_sample/features/home/presentation/views/widgets/cus
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginScreen extends StatelessWidget {
-   LoginScreen();
-   bool isLoading = false;
+  LoginScreen();
+
+  bool isLoading = false;
+  GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
 
-
-    return BlocConsumer<LoginCubit,LoginState>(
-      listener: (context,state ){
-        if(state is LoginLoading){
-          isLoading=true;
-        }
-       else if(state is LoginSuccess){
-          if(state.loginResponse.status == true){
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state is LoginLoading) {
+          isLoading = true;
+        } else if (state is LoginSuccess) {
+          if (state.loginResponse.status == true) {
             print(state.loginResponse.message);
-            CommonUtil().showToast(state.loginResponse.message ?? '',Colors.green);
+            CommonUtil()
+                .showToast(state.loginResponse.message ?? '', Colors.green);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HomeScreen()),
             );
-          }else{
-            CommonUtil().showToast(AppConstants.checkDataEntered ?? '',Colors.red);
+          } else {
+            CommonUtil()
+                .showToast(AppConstants.checkDataEntered ?? '', Colors.red);
           }
-          isLoading=false;
-        }else if(state is LoginFailure){
+          isLoading = false;
+        } else if (state is LoginFailure) {
           print(state.errorMessage);
-          CommonUtil().showToast(state.errorMessage ?? '',Colors.red);
-          isLoading=false;
+          CommonUtil().showToast(state.errorMessage ?? '', Colors.red);
+          isLoading = false;
         }
       },
-      builder : (context,state )=> ModalProgressHUD(
-      inAsyncCall: isLoading,
+      builder: (context, state) => ModalProgressHUD(
+        inAsyncCall: isLoading,
         child: Scaffold(
-            body:Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 120,
+          body: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 120,
+                ),
+                const Text(
+                  AppConstants.login,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
                   ),
-                  const Text(
-                    AppConstants.login,
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  AppTextField(
-                      textController: emailController,
-                      icon: Icons.email,
-                    hintText: AppConstants.type_your_username,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  AppTextField(
-                      textController: passwordController,
-                      icon: Icons.password_sharp,
-
-                    hintText: AppConstants.type_your_password,),
-                  const SizedBox(
-                    height: 50,
-                  ),
-
-                  GestureDetector(
-                    onTap: (){
-
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                AppTextField(
+                  textController: emailController,
+                  icon: Icons.email,
+                  hintText: AppConstants.type_your_username,
+                  validate: (value) {
+                    if (value.toString().isEmpty) {
+                      return AppConstants.emailError;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                AppTextField(
+                  textController: passwordController,
+                  icon: Icons.password_sharp,
+                  hintText: AppConstants.type_your_password,
+                  validate: (value) {
+                    if (value.toString().isEmpty) {
+                      return AppConstants.passwordError;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
                       BlocProvider.of<LoginCubit>(context).login(
-               emailController.text,
-               passwordController.text,);
-
-                    },
-                    child: AppButton(
-                          text: AppConstants.login,
-                        ),
+                        emailController.text,
+                        passwordController.text,
+                      );
+                    }
+                  },
+                  child: const AppButton(
+                    text: AppConstants.login,
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Spacer(),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Spacer(),
+              ],
+            ),
+          ),
         ),
       ),
     );

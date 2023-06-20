@@ -6,6 +6,7 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   bool isObscure;
+  FormFieldValidator<String> validate;
 
 
   AppTextField({Key? key,
@@ -13,6 +14,7 @@ class AppTextField extends StatelessWidget {
     required this.hintText,
     required this.icon,
     this.isObscure=false,
+    required this.validate,
   }) : super(key: key);
 
   @override
@@ -50,6 +52,7 @@ class AppTextField extends StatelessWidget {
 
             )
         ),
+        validator: validate,
 
       ),
     );
